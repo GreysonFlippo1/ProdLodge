@@ -134,7 +134,7 @@ const NavBar = () => {
       triggerProfileItemsSearch = !triggerProfileItemsSearch;
       return (
         <>
-          <div className="w-max h-7 ml-auto mr-auto sm:mr-5 mt-auto mb-auto">
+          {/* <div className="w-max h-7 ml-auto mr-auto sm:mr-5 mt-auto mb-auto">
             <Link
               to="/login"
               className="m-1 text-black border border-prodSecondary rounded-sm p-1 shadow-md hover:shadow-lg"
@@ -147,19 +147,19 @@ const NavBar = () => {
             >
               <button className="navbarButton">Sign Up</button>
             </Link>
-          </div>
+          </div> */}
         </>
       );
     }
   };
 
   return (
-    <div className="bg-prodPrimary h-max mb-2 pb-2 sm:pb-0 sm:flex justify-center">
+    <div className="nav-bar-container">
       <Link
         to="/"
-        className="ml-auto mr-auto sm:ml-0 sm:mr-0 w-max no-underline hover:underline decoration-prodSecondary block p-1"
+        style={{textDecoration: 'none'}}
       >
-        <h1 className="text-black mt-auto mb-auto text-4xl p-1"> ProdLodge </h1>
+        <h1> ProdLodge </h1>
       </Link>
       {generateUserAuthSection()}
     </div>

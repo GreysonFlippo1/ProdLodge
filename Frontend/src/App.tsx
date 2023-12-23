@@ -73,10 +73,9 @@ function App() {
   }, []);
 
   return (
-    <div className="app w-full h-screen scroll-smooth">
+    <div>
       <BrowserRouter>
         <NavBar />
-        <div className="pages">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -93,8 +92,14 @@ function App() {
             <Route path="*" element={<Navigate to="/404" />} />{" "}
             {/* Catch all for unregistered routes */}
           </Routes>
-        </div>
       </BrowserRouter>
+      <div className='footer'>
+        <p>ProdLodge, Aman Koua - 2023</p>
+        <p>
+          Original Author: <a href='https://github.com/AmanKoua/' target="_blank">AmanKoua</a><br />
+          Frontend Rework done by: <a href='https://github.com/greysonflippo1/' target="_blank">GreysonFlippo1</a>
+        </p><br/>
+      </div>
     </div>
   );
 }
