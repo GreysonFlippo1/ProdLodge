@@ -22,7 +22,7 @@ import InvalidRoute from "./pages/InvalidRoute";
 import { AuthContext } from "./context/AuthContext";
 
 import "./invisibleScrollbar.css";
-import "./styles.css";
+import "../styles.css";
 
 const useAuthContext = () => {
   const context = useContext(AuthContext);

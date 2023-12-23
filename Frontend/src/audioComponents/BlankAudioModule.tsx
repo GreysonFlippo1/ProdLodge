@@ -1,6 +1,6 @@
 import React from "react";
 import CSS from "csstype";
-import addButton from "../assets/addModule1.png";
+// import addButton from "../assets/addModule1.png";
 
 interface Props {
   addModule: () => void;
@@ -54,13 +54,14 @@ const BlankAudioModule = ({ addModule }: Props) => {
         <h1 className="w-full text-xl ml-auto mr-auto pt-2 text-center">
           Add Module
         </h1>
-        <img
+        {/* <img
           className="w-3/12 ml-auto mr-auto mt-12"
           src={addButton}
           onClick={() => {
             addModule();
           }}
-        ></img>
+        ></img> */}
+        <div>add</div>
       </div>
     </div>
   );

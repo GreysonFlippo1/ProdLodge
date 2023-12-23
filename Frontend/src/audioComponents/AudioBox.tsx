@@ -17,24 +17,24 @@ all useEffects definitions in this file, but I dont see another option.
 */
 
 // import impulse0 from "../assets/impulseResponses/0.wav";
-import impulse1 from "../assets/impulseResponses/1.wav";
-import impulse2 from "../assets/impulseResponses/2.wav";
-import impulse3 from "../assets/impulseResponses/3.wav";
-import impulse4 from "../assets/impulseResponses/4.wav";
-import impulse5 from "../assets/impulseResponses/5.wav";
-import impulse6 from "../assets/impulseResponses/6.wav";
-import impulse7 from "../assets/impulseResponses/7.wav";
-import impulse8 from "../assets/impulseResponses/8.wav";
-import impulse9 from "../assets/impulseResponses/9.wav";
-import impulse10 from "../assets/impulseResponses/10.wav";
-import impulse11 from "../assets/impulseResponses/11.wav";
-import impulse12 from "../assets/impulseResponses/12.wav";
-import impulse13 from "../assets/impulseResponses/13.wav";
-import impulse14 from "../assets/impulseResponses/14.wav";
-import impulse15 from "../assets/impulseResponses/15.wav";
-import impulse16 from "../assets/impulseResponses/16.wav";
-import impulse17 from "../assets/impulseResponses/17.wav";
-import impulse18 from "../assets/impulseResponses/18.wav";
+// import impulse1 from "../assets/impulseResponses/1.wav";
+// import impulse2 from "../assets/impulseResponses/2.wav";
+// import impulse3 from "../assets/impulseResponses/3.wav";
+// import impulse4 from "../assets/impulseResponses/4.wav";
+// import impulse5 from "../assets/impulseResponses/5.wav";
+// import impulse6 from "../assets/impulseResponses/6.wav";
+// import impulse7 from "../assets/impulseResponses/7.wav";
+// import impulse8 from "../assets/impulseResponses/8.wav";
+// import impulse9 from "../assets/impulseResponses/9.wav";
+// import impulse10 from "../assets/impulseResponses/10.wav";
+// import impulse11 from "../assets/impulseResponses/11.wav";
+// import impulse12 from "../assets/impulseResponses/12.wav";
+// import impulse13 from "../assets/impulseResponses/13.wav";
+// import impulse14 from "../assets/impulseResponses/14.wav";
+// import impulse15 from "../assets/impulseResponses/15.wav";
+// import impulse16 from "../assets/impulseResponses/16.wav";
+// import impulse17 from "../assets/impulseResponses/17.wav";
+// import impulse18 from "../assets/impulseResponses/18.wav";
 
 interface Props {
   songData: SongData;
@@ -47,24 +47,24 @@ const AudioBox = ({ songData, isPageSwitched, setIsSongPayloadSet }: Props) => {
 
   let impulses: Object = {
     // impulse0: impulse0,
-    impulse1: impulse1,
-    impulse2: impulse2,
-    impulse3: impulse3,
-    impulse4: impulse4,
-    impulse5: impulse5,
-    impulse6: impulse6,
-    impulse7: impulse7,
-    impulse8: impulse8,
-    impulse9: impulse9,
-    impulse10: impulse10,
-    impulse11: impulse11,
-    impulse12: impulse12,
-    impulse13: impulse13,
-    impulse14: impulse14,
-    impulse15: impulse15,
-    impulse16: impulse16,
-    impulse17: impulse17,
-    impulse18: impulse18,
+    // impulse1: impulse1,
+    // impulse2: impulse2,
+    // impulse3: impulse3,
+    // impulse4: impulse4,
+    // impulse5: impulse5,
+    // impulse6: impulse6,
+    // impulse7: impulse7,
+    // impulse8: impulse8,
+    // impulse9: impulse9,
+    // impulse10: impulse10,
+    // impulse11: impulse11,
+    // impulse12: impulse12,
+    // impulse13: impulse13,
+    // impulse14: impulse14,
+    // impulse15: impulse15,
+    // impulse16: impulse16,
+    // impulse17: impulse17,
+    // impulse18: impulse18,
   };
 
   let impulsesJSON = JSON.stringify(impulses);

@@ -1,13 +1,5 @@
 import React from "react";
 import BlankAudioModule from "./BlankAudioModule";
-import NewAudioModule from "./NewAudioModule";
-import HighPassModule from "./HighPassModule";
-import LowPassModule from "./LowPassModule";
-import PeakModule from "./PeakModule";
-import ReverbModule from "./ReverbModule";
-import WaveShaperModule from "./WaveShaperModule";
-import GainModule from "./GainModule";
-import CompressionModule from "./CompressionModule";
 import CSS from "csstype";
 
 import { AudioModule } from "../customTypes";
@@ -64,98 +56,6 @@ const AudioModuleContainer = ({
       case "Blank":
         return (
           <BlankAudioModule addModule={addModule} key={idx}></BlankAudioModule>
-        );
-      case "New":
-        return (
-          <NewAudioModule
-            position={[containerIdx, idx]}
-            setModuleType={setModuleType}
-            key={idx}
-          ></NewAudioModule>
-        );
-      case "Highpass":
-        return (
-          <HighPassModule
-            data={data}
-            position={[containerIdx, idx]}
-            editAudioNodeData={editAudioNodeData}
-            setAudioNodesChanged={setAudioNodesChanged}
-            deleteAudioModuleAndNode={deleteAudioModuleAndNode}
-            moveAudioModuleAndNode={moveAudioModuleAndNode}
-            key={idx}
-          ></HighPassModule>
-        );
-      case "Lowpass":
-        return (
-          <LowPassModule
-            data={data}
-            position={[containerIdx, idx]}
-            editAudioNodeData={editAudioNodeData}
-            deleteAudioModuleAndNode={deleteAudioModuleAndNode}
-            setAudioNodesChanged={setAudioNodesChanged}
-            moveAudioModuleAndNode={moveAudioModuleAndNode}
-            key={idx}
-          ></LowPassModule>
-        );
-      case "Peak":
-        return (
-          <PeakModule
-            data={data}
-            position={[containerIdx, idx]}
-            editAudioNodeData={editAudioNodeData}
-            deleteAudioModuleAndNode={deleteAudioModuleAndNode}
-            setAudioNodesChanged={setAudioNodesChanged}
-            moveAudioModuleAndNode={moveAudioModuleAndNode}
-            key={idx}
-          ></PeakModule>
-        );
-      case "Reverb":
-        return (
-          <ReverbModule
-            data={data}
-            position={[containerIdx, idx]}
-            editAudioNodeData={editAudioNodeData}
-            setAudioNodesChanged={setAudioNodesChanged}
-            deleteAudioModuleAndNode={deleteAudioModuleAndNode}
-            moveAudioModuleAndNode={moveAudioModuleAndNode}
-            key={idx}
-          ></ReverbModule>
-        );
-      case "Waveshaper":
-        return (
-          <WaveShaperModule
-            data={data}
-            position={[containerIdx, idx]}
-            editAudioNodeData={editAudioNodeData}
-            setAudioNodesChanged={setAudioNodesChanged}
-            deleteAudioModuleAndNode={deleteAudioModuleAndNode}
-            moveAudioModuleAndNode={moveAudioModuleAndNode}
-            key={idx}
-          ></WaveShaperModule>
-        );
-      case "Gain":
-        return (
-          <GainModule
-            data={data}
-            position={[containerIdx, idx]}
-            editAudioNodeData={editAudioNodeData}
-            setAudioNodesChanged={setAudioNodesChanged}
-            deleteAudioModuleAndNode={deleteAudioModuleAndNode}
-            moveAudioModuleAndNode={moveAudioModuleAndNode}
-            key={idx}
-          ></GainModule>
-        );
-      case "Compression":
-        return (
-          <CompressionModule
-            data={data}
-            position={[containerIdx, idx]}
-            editAudioNodeData={editAudioNodeData}
-            setAudioNodesChanged={setAudioNodesChanged}
-            deleteAudioModuleAndNode={deleteAudioModuleAndNode}
-            moveAudioModuleAndNode={moveAudioModuleAndNode}
-            key={idx}
-          ></CompressionModule>
         );
       default:
         console.log("Unsupported module added!");

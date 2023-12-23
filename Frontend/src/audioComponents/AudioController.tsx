@@ -1,6 +1,6 @@
 import CSS from "csstype";
-import playButton from "../assets/playButton.png";
-import pauseButton from "../assets/pauseButton.png";
+// import playButton from "../assets/playButton.png";
+// import pauseButton from "../assets/pauseButton.png";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -148,7 +148,7 @@ const AudioController = ({
     startVisualizer();
   };
 
-  const imgSrc = isPlaying ? pauseButton : playButton;
+  // const imgSrc = isPlaying ? pauseButton : playButton;
   const expansionText = isExpanded ? "Close" : "Open";
 
   const handleMouseEnterExpandButton = () => {
@@ -197,12 +197,13 @@ const AudioController = ({
           {expansionText}
         </div>
         <div style={SongTimeDivStyle}></div>
-        <img
+        {/* <img
           ref={audioControlImageRef}
           src={imgSrc}
           style={imgStyle}
           onClick={handleImageClick}
-        />
+        /> */}
+        <div>Play</div>
       </div>
     </>
   );
