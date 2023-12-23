@@ -93,78 +93,62 @@ const Signup = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-prodPrimary to-prodSecondary w-full sm:w-8/12 h-screen mr-auto ml-auto ">
-      <div className="w-7/12 mr-auto ml-auto">
-        <form
-          onSubmit={handleSubmit}
-          className="ml-auto mr-auto border-b border-black pb-2"
-        >
-          <h3 className=" w-max mr-auto ml-auto p-2 font-bold">Sign up</h3>
-          <div>
-            <label className="w-full mr-auto ml-auto p-2 font-bold">
-              Email
-            </label>
+    <div className="login-form-container">
+      <div className="login-form">
+        <form onSubmit={handleSubmit}>
+          <p className="login-title">ProdLodge</p>
+          <p className='login-row-title'>
+            Sign Up
+          </p>
+          <p className='login-description'>
+            Please enter new login credentials below
+          </p>
+          <div className="login-input-row">
+            <label className="login-label">Email</label>
             <input
               type="email"
-              value={email}
-              onChange={updateEmail}
-              className="w-full mr-auto ml-auto p-2"
+              className="login-text-inputs"
+              placeholder="Enter email"
             />
           </div>
-          <div>
-            <label className="w-full mr-auto ml-auto p-2 font-bold">
+          <div className="login-input-row">
+            <label className="login-label">User Name</label>
+            <input
+              type="text"
+              className="login-text-inputs"
+              placeholder="Enter user name"
+            />
+          </div>
+          <div className="login-input-row">
+            <label className="login-label">
               Password
             </label>
             <input
               type="password"
-              value={password}
-              onChange={updatePassword}
-              className="w-full mr-auto ml-auto p-2"
+              className="login-text-inputs"
+              placeholder="Enter password"
             />
           </div>
-          <div>
-            <label className="w-full mr-auto ml-auto p-2 font-bold">
-              Password (re-enter)
+          <div className="login-input-row">
+            <label className="login-label">
+              Enter Password Again
             </label>
             <input
               type="password"
-              value={passwordDup}
-              onChange={updatePasswordDup}
-              className="w-full mr-auto ml-auto p-2"
+              className="login-text-inputs"
+              placeholder="Enter password"
             />
           </div>
-          <div>
-            <label className="w-full mr-auto ml-auto p-2 font-bold">
-              User Name
-            </label>
-            <input
-              type="text"
-              value={userName}
-              onChange={updateUserName}
-              className="w-full mr-auto ml-auto p-2"
-            />
-          </div>
-          <div className="w-max mr-auto ml-auto p-2 mt-4">
-            <button className="btn">Sign up</button>
-          </div>
-
-          {error && <div className="error">{error}</div>}
-        </form>
-        <div className="w-11/12 h-max ml-auto mr-auto mt-3 flex-col">
-          <p className="w-12/12 break-words text-center ml-auto mr-auto font-bold justify-self-start block ">
-            New here? Check out the about page
+          <button type="button" className="login-button">
+            Sign Up
+          </button>
+          <p className='login-signup'>
+          <br />
+          <br />
+          <br />
+            If this isn't your first time on ProdLodge, please <a href="/login">Login</a> to login with an existing account.
           </p>
-          <div className="w-max ml-auto mr-auto">
-            <button
-              className="btn"
-              onClick={() => {
-                navigate("/about");
-              }}
-            >
-              about
-            </button>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   );
