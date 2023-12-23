@@ -21,9 +21,8 @@ import InvalidRoute from "./pages/InvalidRoute";
 
 import { AuthContext } from "./context/AuthContext";
 
-// import "./index.css"; // old pre-tailwind css
 import "./invisibleScrollbar.css";
-import "./styles.css"; // tailwindcss styles
+import "./styles.css";
 
 const useAuthContext = () => {
   const context = useContext(AuthContext);
