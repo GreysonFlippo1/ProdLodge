@@ -174,6 +174,7 @@ settings page (formally my profile)
     flex-direction: column;
     align-items:flex-end;
     box-shadow: 5px 0px 5px 5px rgba(0,0,0,0.1);
+    min-height: calc(100vh - 265px);
 }
 
 .settings-navigation-label {
@@ -209,4 +210,90 @@ settings page (formally my profile)
     background-color: rgba(0,0,0,0.2);
     color: #fff;
     box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.05);
+}
+
+.settings-pane {
+    padding-left: 100px;
+}
+
+.settins-pane-title {
+ font-weight: bold;
+}
+
+.settings-coloumns-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.settings-profile-picture {
+    width: 100px;
+    height: 100px;
+    background-image: url('https://media.pitchfork.com/photos/650de105eacc5b460e151343/master/w_1280%2Cc_limit/Taylor-Swift-1989-Taylors-Version.jpg');
+    background-size: cover;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    margin-right: 50px;
+}
+
+.settings-row {
+    margin-top: 40px;
+}
+
+.settings-name {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.settings-input[type="text"] {
+    color: white;
+    height: 40px;
+    width: 400px;
+    background-color: rgba(0,0,0,0.3);
+    border: none;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+}
+
+.settings-input[type="button"] {
+    color: black;
+    height: 40px;
+    background-color: rgb(0, 255, 229);
+    box-shadow: 0px 1px 3px 3px rgba(0,0,0,0.3);
+    border: none;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+}
+
+.settings-input[type="button"]:hover {
+    background-color: rgb(160, 255, 245);
+    cursor: pointer;
+}
+
+.remove-link-button {
+    margin-left: 20px;
+}
+
+.delete-button {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid salmon !important;
+    color: salmon !important;
+}
+
+.delete-button:hover {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.friends-profile-picture {
+    width: 50px;
+    height: 50px;
+    background-image: url('https://media.pitchfork.com/photos/650de105eacc5b460e151343/master/w_1280%2Cc_limit/Taylor-Swift-1989-Taylors-Version.jpg');
+    background-size: cover;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    margin-right: 20px;
 }

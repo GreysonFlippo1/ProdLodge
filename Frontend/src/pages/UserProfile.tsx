@@ -23,7 +23,7 @@ const UserProfile = () => {
   const [triggerProfileFetch, setTriggerProfileFetch] = useState(true);
   const [triggerFriendDataFetch, setTriggerFriendDataFetch] = useState(true);
   const [profileImageObjURL, setProfileImageObjURL] = useState("");
-  const [selectedPage, setSelectedPage] = useState("profile");
+  const [selectedPage, setSelectedPage] = useState("friends");
 
   const [profileImage, setProfileImage] = useState<any>();
   const [friendRequests, setFriendRequests] = useState<Object>({});
@@ -622,6 +622,17 @@ const UserProfile = () => {
     updateProfileData();
   }, [profileContext]);
 
+  const getPage = (selectedPage: string) => {
+    switch(selectedPage) {
+      case 'profile':
+        return <ProfilePage />
+      case 'friends':
+        return <FriendsPage />
+      default:
+        <ProfilePage />
+    }
+  }
+
   return (
     <div className="settings-container">
       <div className="settings-navigation">
@@ -642,52 +653,9 @@ const UserProfile = () => {
         </div>
       </div>
       <div className="hide-scrollbar overflow-scroll w-6/12 mr-auto ml-auto">
-        {selectedPage === "profile" && (
-          <ProfilePage
-            profileImageObjURL={profileImageObjURL}
-            userName={userName}
-            email={email}
-            isInEditMode={isInEditMode}
-            isImageLoading={isImageLoading}
-            setProfileImage={setProfileImage}
-            soundcloudURL={soundcloudURL}
-            editsoundcloudURL={editsoundcloudURL}
-            bandcampURL={bandcampURL}
-            editBandcampURL={editBandcampURL}
-            spotifyURL={spotifyURL}
-            editSpotifyURL={editSpotifyURL}
-            youtubeURL={youtubeURL}
-            editYoutubeURL={editYoutubeURL}
-            twitterURL={twitterURL}
-            editTwitterURL={editTwitterURL}
-            facebookURL={facebookURL}
-            editFacebookURL={editFacebookURL}
-            instagramURL={instagramURL}
-            editInstagramURL={editInstagramURL}
-            visibility={visibility}
-            editVisibility={editVisibility}
-            toggleEditMode={toggleEditMode}
-            deleteProfile={deleteProfile}
-            error={error}
-            message={message}
-          ></ProfilePage>
-        )}
-
-        {selectedPage === "friends" && (
-          <FriendsPage
-            error={error}
-            message={message}
-            addFriendEmail={addFriendEmail}
-            friendRequests={friendRequests}
-            userFriends={userFriends}
-            setAddFriendEmail={setAddFriendEmail}
-            addFriend={addFriend}
-            removeFriend={removeFriend}
-            resolveFriendRequest={resolveFriendRequest}
-            removeRequestNotification={removeRequestNotification}
-            setTriggerFriendDataFetch={setTriggerFriendDataFetch}
-          ></FriendsPage>
-        )}
+        {
+          getPage(selectedPage)
+        }
       </div>
     </div>
   );
