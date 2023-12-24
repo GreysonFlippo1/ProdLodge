@@ -10,6 +10,8 @@ import { UserFriend } from "../customTypes";
 
 import FriendsPage from "../components/FriendsPage";
 import ProfilePage from "../components/ProfilePage";
+import PrivacyPage from "../components/PrivacyPage";
+import AccountPage from "../components/AccountPage";
 
 const UserProfile = () => {
   const authContext = useContext(AuthContext); // user and dispatch properties
@@ -23,7 +25,7 @@ const UserProfile = () => {
   const [triggerProfileFetch, setTriggerProfileFetch] = useState(true);
   const [triggerFriendDataFetch, setTriggerFriendDataFetch] = useState(true);
   const [profileImageObjURL, setProfileImageObjURL] = useState("");
-  const [selectedPage, setSelectedPage] = useState("friends");
+  const [selectedPage, setSelectedPage] = useState("profile");
 
   const [profileImage, setProfileImage] = useState<any>();
   const [friendRequests, setFriendRequests] = useState<Object>({});
@@ -628,6 +630,10 @@ const UserProfile = () => {
         return <ProfilePage />
       case 'friends':
         return <FriendsPage />
+      case 'privacy':
+        return <PrivacyPage />
+      case 'account':
+        return <AccountPage />
       default:
         <ProfilePage />
     }
@@ -639,16 +645,16 @@ const UserProfile = () => {
         <div className="settings-navigation-label">
           USER SETTINGS
         </div>
-        <div className="settings-navigation-options selected">
+        <div className={`settings-navigation-options ${selectedPage === 'profile' ? 'selected' : ''}`} onClick={() => {setSelectedPage('profile')}}>
           Profile
         </div>
-        <div className="settings-navigation-options">
+        <div className={`settings-navigation-options ${selectedPage === 'friends' ? 'selected' : ''}`} onClick={() => {setSelectedPage('friends')}}>
           Friends
         </div>
-        <div className="settings-navigation-options">
+        <div className={`settings-navigation-options ${selectedPage === 'privacy' ? 'selected' : ''}`} onClick={() => {setSelectedPage('privacy')}}>
           Privacy
         </div>
-        <div className="settings-navigation-options">
+        <div className={`settings-navigation-options ${selectedPage === 'account' ? 'selected' : ''}`} onClick={() => {setSelectedPage('account')}}>
           Account
         </div>
       </div>

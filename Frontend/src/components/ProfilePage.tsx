@@ -1,5 +1,22 @@
 
+const mock_data = {
+  links: [
+    {
+      id: 0,
+      name: 'SoundCloud',
+      url: 'https://soundcloud.com/slabcity'
+    },
+    {
+      id: 1,
+      name: 'YouTube',
+      url: 'https://www.youtube.com'
+    }
+  ]
+}
+
+
 const ProfilePage = (props) => {
+
   return (
     <div className="settings-pane">
       <div className="settins-pane-title">
@@ -24,55 +41,36 @@ const ProfilePage = (props) => {
           <button
             className="settings-input"
             type="button"
-            placeholder="User Name"
           >
             Change Avatar
           </button>
         </div>
       </div>
-      <div className="settings-row">
-        <div className="settings-name">
-          SoundCloud Link
+      {
+      mock_data.links.map(link => 
+        <div className="settings-row" key={link.id}>
+          <div className="settings-name">
+            {link.name}
+          </div>
+          <div className="settings-coloumns-container">
+          <input
+            className="settings-input"
+            type="text"
+            placeholder={link.url}
+          />
+          <button
+            className="settings-input remove-link-button delete-button"
+            type="button"
+          >
+            Remove Link
+          </button>
+          </div>
         </div>
-        <div className="settings-coloumns-container">
-        <input
-          className="settings-input"
-          type="text"
-          placeholder="https://soundcloud.com/slabcity"
-        />
-        <button
-          className="settings-input remove-link-button delete-button"
-          type="button"
-          placeholder="User Name"
-        >
-          Remove Link
-        </button>
-        </div>
-      </div>
-      <div className="settings-row">
-        <div className="settings-name">
-          YouTube Link
-        </div>
-        <div className="settings-coloumns-container">
-        <input
-          className="settings-input"
-          type="text"
-          placeholder="https://www.youtube.com"
-        />
-        <button
-          className="settings-input remove-link-button delete-button"
-          type="button"
-          placeholder="User Name"
-        >
-          Remove Link
-        </button>
-        </div>
-      </div>
+      )}
       <div className="settings-row">
         <button
           className="settings-input"
           type="button"
-          placeholder="User Name"
         >
           + New Link
         </button>

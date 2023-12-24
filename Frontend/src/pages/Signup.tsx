@@ -131,7 +131,7 @@ const Signup = () => {
           </div>
           <div className="login-input-row">
             <label className="login-label">
-              Enter Password Again
+              Confirm Password
             </label>
             <input
               type="password"

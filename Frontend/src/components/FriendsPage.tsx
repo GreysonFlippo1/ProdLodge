@@ -70,14 +70,12 @@ const FriendsPage = () => {
             <button
               className="settings-input remove-link-button delete-button"
               type="button"
-              placeholder="User Name"
             >
               Remove Friend
             </button>
             <button
               className="settings-input remove-link-button delete-button"
               type="button"
-              placeholder="User Name"
             >
               Block
             </button>
@@ -88,7 +86,6 @@ const FriendsPage = () => {
         <button
           className="settings-input"
           type="button"
-          placeholder="User Name"
         >
           + Add Friend
         </button>
@@ -116,14 +113,12 @@ const FriendsPage = () => {
               <button
                 className="settings-input remove-link-button"
                 type="button"
-                placeholder="User Name"
               >
                 Accept Request
               </button> : 
               <button
                 className="settings-input remove-link-button delete-button"
                 type="button"
-                placeholder="User Name"
               >
                 Cancel Request
               </button>
@@ -131,7 +126,6 @@ const FriendsPage = () => {
             <button
               className="settings-input remove-link-button delete-button"
               type="button"
-              placeholder="User Name"
             >
               Block
             </button>
@@ -160,7 +154,6 @@ const FriendsPage = () => {
           <button
             className="settings-input remove-link-button"
             type="button"
-            placeholder="User Name"
           >
             Unblock
           </button>
