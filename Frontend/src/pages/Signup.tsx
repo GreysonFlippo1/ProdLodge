@@ -146,7 +146,7 @@ const Signup = () => {
           <br />
           <br />
           <br />
-            If this isn't your first time on ProdLodge, please <a href="/login">Login</a> to login with an existing account.
+            Already have an account? <a href="/login">Sign in</a>
           </p>
         </form>
       </div>

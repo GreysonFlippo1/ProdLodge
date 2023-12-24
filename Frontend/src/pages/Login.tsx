@@ -42,7 +42,7 @@ const Login = () => {
             Forgot Password?
           </p>
           <p className='login-signup'>
-            If this is your first time on ProdLodge, please <a href="/signup">Sign Up</a> to create your account.
+            Don't have an account? <a href="/signup">Sign Up</a>
           </p>
         </form>
       </div>

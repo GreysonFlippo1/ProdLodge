@@ -283,13 +283,15 @@ const UserProfile = () => {
     setIsInEditMode(!isInEditMode);
   };
 
+
+  //todo: this should be done on the backend
   const preventPageAccess = () => {
     // DO not allow a user to access the profile page if not logged in OR if profile has yet to be set
     const item = localStorage.getItem("user");
 
-    if (!item) {
-      navigate("/login");
-    }
+    // if (!item) {
+    //   navigate("/login");
+    // }
   };
 
   const setEmailAndUserName = async () => {
@@ -621,38 +623,22 @@ const UserProfile = () => {
   }, [profileContext]);
 
   return (
-    <div className="bg-gradient-to-b from-prodPrimary to-prodSecondary overflow-hidden w-full sm:w-8/12 ml-auto mr-auto flex-col jusitfy-items-center">
-      <div className="w-6/12 h-7 ml-auto mr-auto mt-2 overflow-hidden flex justify-around">
-        <div className="w-max h-max inline-block">
-          {selectedPage === "profile" && (
-            <p className="hover:font-bold border-b-2 border-black">Profile</p>
-          )}
-          {selectedPage !== "profile" && (
-            <p
-              className="hover:font-bold"
-              onClick={() => {
-                setSelectedPage("profile");
-              }}
-            >
-              Profile
-            </p>
-          )}
+    <div className="settings-container">
+      <div className="settings-navigation">
+        <div className="settings-navigation-label">
+          USER SETTINGS
         </div>
-        <div className="w-max h-max inline-block">
-          {selectedPage === "friends" && (
-            <p className="hover:font-bold border-b-2 border-black">Friends</p>
-          )}
-          {selectedPage !== "friends" && (
-            <p
-              className="hover:font-bold"
-              onClick={() => {
-                setTriggerFriendDataFetch(true);
-                setSelectedPage("friends");
-              }}
-            >
-              Friends
-            </p>
-          )}
+        <div className="settings-navigation-options selected">
+          Profile
+        </div>
+        <div className="settings-navigation-options">
+          Friends
+        </div>
+        <div className="settings-navigation-options">
+          Privacy
+        </div>
+        <div className="settings-navigation-options">
+          Account
         </div>
       </div>
       <div className="hide-scrollbar overflow-scroll w-6/12 mr-auto ml-auto">
