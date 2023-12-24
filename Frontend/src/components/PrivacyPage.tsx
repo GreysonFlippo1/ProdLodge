@@ -24,7 +24,10 @@ const PrivacyPage = () => {
       </div>
       <div className="settings-row">
         <div className="settings-name">
-          This is where our privacy policy is going to be. Also, maybe link to the github open source.
+          Access is currently limited to a select number of users (due to database restrictions and cloud infrastructure / hosting costs). If you have been provided the link to this page, you have priviledged access to the site.
+          <br />
+          <br />
+          The source code, which is unlicensed, can be viewed with the provided link. It should be noted that unauthorized replication, use, and distribution of the source code is strictly prohibited. All rights belong to the project's creator! <a href='https://github.com/AmanKoua/ProdLodge'>https://github.com/AmanKoua/ProdLodge</a>
         </div>
       </div>
     </div>

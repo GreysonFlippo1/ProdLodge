@@ -55,36 +55,6 @@ const NewSong = () => {
     backgroundColor: "#edf4fc",
   };
 
-  const preventPageAccess = () => {
-    // DO not allow a user to access the profile page if not logged in OR if profile has yet to be set
-    const item = localStorage.getItem("user");
-
-    if (!item) {
-      navigate("/login");
-    }
-  };
-
-  useEffect(() => {
-    preventPageAccess();
-  }, []);
-
-  useEffect(() => {
-    // Clear error and message after a set time period of being displayed
-
-    if (!message && !error) {
-      return;
-    }
-
-    let temp = setTimeout(() => {
-      setError("");
-      setMessage("");
-    }, 5000);
-
-    return () => {
-      clearTimeout(temp);
-    };
-  }, [message, error]);
-
   const addTrack = () => {
     setSongUploadData([...songUploadData, { trackName: "", file: undefined }]);
   };

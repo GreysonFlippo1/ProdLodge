@@ -90,7 +90,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/404" element={<InvalidRoute />} />
             <Route path="*" element={<Navigate to="/404" />} />{" "}
-            {/* Catch all for unregistered routes */}
+            {/* wip: this should be done on the back end */}
           </Routes>
       </BrowserRouter>
       <div className='footer'>

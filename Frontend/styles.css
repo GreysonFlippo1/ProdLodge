@@ -305,3 +305,15 @@ settings pages (formally my profile)
     border: 1px solid #fff;
     margin-right: 20px;
 }
+
+.songs-feed {
+    overflow: auto;
+}
+
+.song-card {
+    width: 60vw;
+    min-width: 800px;
+    background-color: rgba(0,0,0,0.2);
+    margin-left: 50px;
+    margin-bottom: 50px;
+}

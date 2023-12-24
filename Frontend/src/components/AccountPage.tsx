@@ -23,7 +23,7 @@ const AccountPage = (props) => {
           <input
             className="settings-input"
             type="text"
-            placeholder="email"
+            placeholder="Email"
           />
           <button
             className="settings-input remove-link-button"

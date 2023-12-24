@@ -1,207 +1,100 @@
-import React from "react";
-import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import { EnvironmentContext } from "../context/EnvironmentContext";
+import React, { useState, useContext, useEffect } from "react";
 
-import AudioBox from "../audioComponents/AudioBox";
+const mock_data = {
+  songs:
+  [
+    {
+      "owner": "Aman Koua",
+      "ownerId": "64f2154e6bdca2f092de5e78",
+      "title": "Fathom",
+      "description": "I might finish this one day",
+      "id": "64f217026bdca2f092de5eb1",
+      "visibility": "public",
+      "userConnection": "friend",
+      "commentsList": [
+          "651b23fd71015d39557790be"
+      ],
+      "chains": [
+          {
+              "name": "reverb station",
+              "data": "{\"data\":[[[{\"type\":\"Blank\"}]],[[{\"type\":\"Blank\"},{\"type\":\"Lowpass\",\"isEnabled\":true,\"frequency\":\"617\",\"resonance\":\"-1\"}]],[[{\"type\":\"Blank\"},{\"type\":\"Reverb\",\"isEnabled\":true,\"impulse\":\"4\"}]],[[{\"type\":\"Blank\"}]],[[{\"type\":\"Blank\"},{\"type\":\"Lowpass\",\"isEnabled\":true,\"frequency\":\"17483\",\"resonance\":\"19\"},{\"type\":\"Reverb\",\"isEnabled\":true,\"impulse\":\"9\"}]],[[{\"type\":\"Blank\"}]]]}",
+              "id": "64f38aa160c4ac18e93b3444"
+          },
+          {
+              "name": "Blank",
+              "data": "{\"data\":[[[{\"type\":\"Blank\"}]],[[{\"type\":\"Blank\"}]],[[{\"type\":\"Blank\"}]],[[{\"type\":\"Blank\"}]],[[{\"type\":\"Blank\"}]],[[{\"type\":\"Blank\"}]]]}",
+              "id": "64f6a116ae0c0b8689403c51"
+          }
+      ],
+      "trackIds": [
+          "64f217036bdca2f092de5eb3",
+          "64f217046bdca2f092de5ec4",
+          "64f217066bdca2f092de5eda",
+          "64f217096bdca2f092de5eed",
+          "64f2170a6bdca2f092de5f01",
+          "64f2170e6bdca2f092de5f15"
+      ]
+    },
+  ],
+  comments: [{
+    "comment": {
+        "songId": "64f216426bdca2f092de5e8a",
+        "creatorId": "6506742639bbbfa2b751f113",
+        "creatorUserName": "friend4",
+        "creationTime": 1696277817833,
+        "data": "The bass for this song is inspired by Mick Gordon's sound design. Specifically, I learned the techniques required to create it by watching his audio developers conference talk. It's an interesting talk I would recommend to anyone that likes this sound design!",
+        "hasChain": false,
+        "chain": {
+            "name": "N/A",
+            "data": "N/A"
+        },
+        "replyId": "empty",
+        "upvoteCount": 2,
+        "downvoteCount": 0,
+        "hasUserUpvoted": false,
+        "hasUserDownvoted": false,
+        "replyList": [
+            "651c387271015d3955779a18",
+            "656bd0a40148a464ca4dab9b"
+        ]
+    }
+  }
+  ]
+}
 
-import { Chain, SongData } from "../customTypes";
+const SongCard = (song:object, isEditing:boolean) => {
+
+  return <div className="song-card">
+    test
+  </div>
+}
 
 const Home = () => {
-  const [songPayload, setSongPayload] = useState<SongData[]>([]);
-  const [userSongPayload, setUserSongPayload] = useState<SongData[]>([]);
-  const [friendSongPayload, setFriendSongPayload] = useState<SongData[]>([]);
-  const [publicSongPayload, setPublicSongPayload] = useState<SongData[]>([]);
-  const [isSongPayloadSet, setIsSongPayloadSet] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [selectedPage, setSelectedPage] = useState("My Songs");
-  const [startPage, setStartPage] = useState("My Songs");
-  const [songPayloadSwitchCount, setSongPayloadSwitchCount] = useState(0);
-  const [isPageSwitched, setIsPageSwitched] = useState(false); // toggle this value back and forth to act as a trigger
-  const authContext = useContext(AuthContext);
-  const envContext = useContext(EnvironmentContext);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Get the list of songs visible to the user (and their tracks) upon page load
-
-    if (!authContext.user || !authContext.user.token) {
-      navigate("/login");
-      return;
-    }
-
-    if (isSongPayloadSet) {
-      return;
-    }
-
-    let getSongPayload = async () => {
-      let response = await fetch(`${envContext.backendURL}/user/songs`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${authContext.user.token}`,
-        },
-      });
-
-      setIsLoading(false);
-
-      let json = await response.json();
-
-      let tempUserSongsPayload = [];
-      let tempFriendSongPayload = [];
-      let tempPublicSongPayload = [];
-
-      for (let i = 0; i < json.payload.length; i++) {
-        if (json.payload[i].userConnection == "self") {
-          tempUserSongsPayload.push(json.payload[i]);
-        } else if (json.payload[i].userConnection == "friend") {
-          tempFriendSongPayload.push(json.payload[i]);
-        } else if (json.payload[i].userConnection == "public") {
-          tempPublicSongPayload.push(json.payload[i]);
-        }
-      }
-
-      setUserSongPayload(tempUserSongsPayload);
-      setFriendSongPayload(tempFriendSongPayload);
-      setPublicSongPayload(tempPublicSongPayload);
-      setSongPayload(tempUserSongsPayload);
-      setIsSongPayloadSet(true);
-    };
-
-    getSongPayload();
-  }, [isSongPayloadSet, authContext]);
-
-  useEffect(() => {
-    // Add wait time when switching between pages to circumvent audiobox conflation bug
-
-    if (!isSongPayloadSet || songPayloadSwitchCount == 0) {
-      return;
-    }
-
-    setIsLoading(true);
-    let tempTimeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  }, [songPayload]);
-
-  const generateAudioBoxes = (): JSX.Element => {
-    let audioBoxFragment = (
-      <>
-        {songPayload.map((item, idx) => (
-          <AudioBox
-            songData={item}
-            isPageSwitched={isPageSwitched}
-            setIsSongPayloadSet={setIsSongPayloadSet}
-            key={idx}
-          ></AudioBox>
-        ))}
-      </>
-    );
-
-    return audioBoxFragment;
-  };
-
-  const generatePlaceholderAudioBoxes = (): JSX.Element => {
-    let placeHolderArr = new Array(5).fill(0);
-
-    let audioBoxFragment = (
-      <>
-        {placeHolderArr.map((item, idx) => (
-          <div
-            key={idx}
-            className="bg-gray-500 w-12/12 lg:w-9/12 h-20 mr-auto ml-auto mt-3 pt-3 animate-pulse"
-          ></div>
-        ))}
-      </>
-    );
-
-    return audioBoxFragment;
-  };
+  const [selectedPage, setSelectedPage] = useState("personal");
 
   return (
-    <div className="bg-gradient-to-b from-prodPrimary to-prodSecondary shadow-xl shadow-blue-200 w-full sm:w-8/12 h-screen mr-auto ml-auto pb-4 hide-scrollbar overflow-y-scroll">
-      {/* Do not allow the displaying of audioBoxes on mobile sized screens */}
-
-      <div className="w-10/12 h-7 ml-auto mr-auto mt-2 overflow-hidden flex justify-around">
-        <div className="w-max h-max inline-block">
-          {selectedPage === "My Songs" && (
-            <p className="hover:font-bold border-b-2 border-black">My Songs</p>
-          )}
-          {selectedPage !== "My Songs" && (
-            <p
-              className="hover:font-bold"
-              onClick={() => {
-                setSelectedPage("My Songs");
-                setSongPayloadSwitchCount(1);
-                setIsPageSwitched(!isPageSwitched);
-                setTimeout(() => {
-                  setSongPayload(userSongPayload);
-                }, 50);
-              }}
-            >
-              My Songs
-            </p>
-          )}
+    <div className="settings-container">
+      <div className="settings-navigation">
+        <div className="settings-navigation-label">
+          VIEW SONGS
         </div>
-        <div className="w-max h-max inline-block">
-          {selectedPage === "Friend's Songs" && (
-            <p className="hover:font-bold border-b-2 border-black">
-              Friend's Songs
-            </p>
-          )}
-          {selectedPage !== "Friend's Songs" && (
-            <p
-              className="hover:font-bold"
-              onClick={() => {
-                setSelectedPage("Friend's Songs");
-                setSongPayloadSwitchCount(1);
-                setIsPageSwitched(!isPageSwitched);
-                setTimeout(() => {
-                  setSongPayload(friendSongPayload);
-                }, 50);
-              }}
-            >
-              Friend's Songs
-            </p>
-          )}
+        <div className={`settings-navigation-options ${selectedPage === 'personal' ? 'selected' : ''}`} onClick={() => {setSelectedPage('personal')}}>
+          My Songs
         </div>
-        <div className="w-max h-max inline-block">
-          {selectedPage === "Public songs" && (
-            <p className="hover:font-bold border-b-2 border-black">
-              Public songs
-            </p>
-          )}
-          {selectedPage !== "Public songs" && (
-            <p
-              className="hover:font-bold"
-              onClick={() => {
-                setSelectedPage("Public songs");
-                setSongPayloadSwitchCount(1);
-                setIsPageSwitched(!isPageSwitched);
-                setTimeout(() => {
-                  setSongPayload(publicSongPayload);
-                }, 50);
-              }}
-            >
-              Public songs
-            </p>
-          )}
+        <div className={`settings-navigation-options ${selectedPage === 'friends' ? 'selected' : ''}`} onClick={() => {setSelectedPage('friends')}}>
+          Friend's Songs
+        </div>
+        <div className={`settings-navigation-options ${selectedPage === 'public' ? 'selected' : ''}`} onClick={() => {setSelectedPage('public')}}>
+          Public Songs
         </div>
       </div>
-
-      <div className="w-full h-max mt-10 bg-prodSecondary rounded-lg z-50 fixed sm:hidden">
-        <h3 className="ml-auto mr-auto p-5 font-bold text-4xl">
-          We're sorry, but we cannot support mobile devices!
-        </h3>
-      </div>
-      <div className="blur-sm sm:blur-none sm:pointer-events-auto pointer-events-none">
-        {!isLoading && songPayload.length > 0 && generateAudioBoxes()}
-        {!isLoading && songPayload.length == 0 && (
-          <div className="w-max h-max ml-auto mr-auto mt-5 border-b-2 border-black ">
-            <h3 className="">Sorry, but you have no songs to show.</h3>
-          </div>
-        )}
-        {isLoading && generatePlaceholderAudioBoxes()}
+      <div className="songs-feed">
+        {
+          SongCard(mock_data.songs[0], false)
+        }
+        {
+          SongCard(mock_data.songs[0], false)
+        }
       </div>
     </div>
   );

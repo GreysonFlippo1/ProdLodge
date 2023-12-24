@@ -658,7 +658,7 @@ const UserProfile = () => {
           Account
         </div>
       </div>
-      <div className="hide-scrollbar overflow-scroll w-6/12 mr-auto ml-auto">
+      <div className="hide-scrollbar overflow-scroll">
         {
           getPage(selectedPage)
         }

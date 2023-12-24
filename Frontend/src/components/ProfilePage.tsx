@@ -9,7 +9,7 @@ const mock_data = {
     {
       id: 1,
       name: 'YouTube',
-      url: 'https://www.youtube.com'
+      url: 'http://https//www.youtube.com/@thegreyhavens167'
     }
   ]
 }
@@ -29,7 +29,7 @@ const ProfilePage = (props) => {
         <input
           className="settings-input"
           type="text"
-          placeholder="User Name"
+          placeholder="User name"
         />
       </div>
       <div className="settings-row">
