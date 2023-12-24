@@ -1,5 +1,49 @@
 import { useState, useEffect } from "react";
 
+const mock_friends_data = {
+  friends: [
+    {
+      id: '0',
+      userName: 'Greyson Flippo',
+      email: 'ac130veterans@gmail.com',
+      status: 'friends',
+      avatar: 'https://media.pitchfork.com/photos/650de105eacc5b460e151343/master/w_1280%2Cc_limit/Taylor-Swift-1989-Taylors-Version.jpg'
+    },
+    {
+      id: '1',
+      userName: 'Aman Koua',
+      email: 'ac130veterans@gmail.com',
+      status: 'friends',
+      avatar: 'https://media.pitchfork.com/photos/650de105eacc5b460e151343/master/w_1280%2Cc_limit/Taylor-Swift-1989-Taylors-Version.jpg'
+    },
+  ],
+  pending: [
+    {
+      id: '2',
+      userName: 'Taylor Swift',
+      email: 'ac130veterans@gmail.com',
+      status: 'recieved',
+      avatar: 'https://media.pitchfork.com/photos/650de105eacc5b460e151343/master/w_1280%2Cc_limit/Taylor-Swift-1989-Taylors-Version.jpg'
+    },
+    {
+      id: '3',
+      userName: 'DannyD',
+      email: 'ac130veterans@gmail.com',
+      status: 'sent',
+      avatar: 'https://media.pitchfork.com/photos/650de105eacc5b460e151343/master/w_1280%2Cc_limit/Taylor-Swift-1989-Taylors-Version.jpg'
+    },
+  ],
+  blocked: [
+    {
+      id: '4',
+      userName: 'Kanye West',
+      email: 'ac130veterans@gmail.com',
+      status: 'blocked',
+      avatar: 'https://media.pitchfork.com/photos/650de105eacc5b460e151343/master/w_1280%2Cc_limit/Taylor-Swift-1989-Taylors-Version.jpg'
+    },
+  ]
+}
+
 const FriendsPage = () => {
 
   //todo: add friend button opens a modal
@@ -9,62 +53,37 @@ const FriendsPage = () => {
       <div className="settins-pane-title">
         FRIENDS
       </div>
-      <div className="settings-row">
-        <div className="settings-name">
-          Greyson Flippo
+      {
+        mock_friends_data.friends.map(friend => 
+        <div className="settings-row" key={friend.id}>
+          <div className="settings-name">
+            {friend.userName}
+          </div>
+          <div className="settings-coloumns-container">
+            <div className="friends-profile-picture" style={{backgroundImage: `url('${friend.avatar}')`}} />
+            <input
+              className="settings-input"
+              type="text"
+              placeholder={friend.email}
+              disabled={true}
+            />
+            <button
+              className="settings-input remove-link-button delete-button"
+              type="button"
+              placeholder="User Name"
+            >
+              Remove Friend
+            </button>
+            <button
+              className="settings-input remove-link-button delete-button"
+              type="button"
+              placeholder="User Name"
+            >
+              Block
+            </button>
+          </div>
         </div>
-        <div className="settings-coloumns-container">
-          <div className="friends-profile-picture" />
-          <input
-            className="settings-input"
-            type="text"
-            placeholder="ac130veterans@gmail.com"
-            disabled={true}
-          />
-          <button
-            className="settings-input remove-link-button delete-button"
-            type="button"
-            placeholder="User Name"
-          >
-            Remove Friend
-          </button>
-          <button
-            className="settings-input remove-link-button delete-button"
-            type="button"
-            placeholder="User Name"
-          >
-            Block
-          </button>
-        </div>
-      </div>
-      <div className="settings-row">
-        <div className="settings-name">
-          Aman Koua
-        </div>
-        <div className="settings-coloumns-container">
-          <div className="friends-profile-picture" />
-          <input
-            className="settings-input"
-            type="text"
-            placeholder="aman@email.com"
-            disabled={true}
-          />
-          <button
-            className="settings-input remove-link-button delete-button"
-            type="button"
-            placeholder="User Name"
-          >
-            Remove Friend
-          </button>
-          <button
-            className="settings-input remove-link-button delete-button"
-            type="button"
-            placeholder="User Name"
-          >
-            Block
-          </button>
-        </div>
-      </div>
+      )}
       <div className="settings-row">
         <button
           className="settings-input"
@@ -75,92 +94,79 @@ const FriendsPage = () => {
         </button>
       </div>
 
+      <div className="settins-pane-title" style={{marginTop: '80px'}}>
+        PENDING REQUESTS
+      </div>
+      {
+        mock_friends_data.pending.map(friend => 
+        <div className="settings-row" key={friend.id}>
+          <div className="settings-name">
+            {friend.userName}
+          </div>
+          <div className="settings-coloumns-container">
+            <div className="friends-profile-picture" style={{backgroundImage: `url('${friend.avatar}')`}} />
+            <input
+              className="settings-input"
+              type="text"
+              placeholder={friend.email}
+              disabled={true}
+            />
+            {
+              friend.status === 'recieved' ? 
+              <button
+                className="settings-input remove-link-button"
+                type="button"
+                placeholder="User Name"
+              >
+                Accept Request
+              </button> : 
+              <button
+                className="settings-input remove-link-button delete-button"
+                type="button"
+                placeholder="User Name"
+              >
+                Cancel Request
+              </button>
+            }
+            <button
+              className="settings-input remove-link-button delete-button"
+              type="button"
+              placeholder="User Name"
+            >
+              Block
+            </button>
+          </div>
+        </div>
+      )}
+      
     <div className="settins-pane-title" style={{marginTop: '80px'}}>
-      PENDING REQUESTS
-    </div>
-    <div className="settings-row">
-      <div className="settings-name">
-        Taylor Swift
-      </div>
-      <div className="settings-coloumns-container">
-        <div className="friends-profile-picture" />
-        <input
-          className="settings-input"
-          type="text"
-          placeholder="ac130veterans@gmail.com"
-          disabled={true}
-        />
-        <button
-          className="settings-input remove-link-button"
-          type="button"
-          placeholder="User Name"
-        >
-          Accept Request
-        </button>
-        <button
-          className="settings-input remove-link-button delete-button"
-          type="button"
-          placeholder="User Name"
-        >
-          Block
-        </button>
-      </div>
+      BLOCKED USERS
     </div>
 
-    <div className="settings-row">
-      <div className="settings-name">
-        DannyD
+    {
+      mock_friends_data.blocked.map(friend => 
+      <div className="settings-row" key={friend.id}>
+        <div className="settings-name">
+          {friend.userName}
+        </div>
+        <div className="settings-coloumns-container">
+          <div className="friends-profile-picture" style={{backgroundImage: `url('${friend.avatar}')`}} />
+          <input
+            className="settings-input"
+            type="text"
+            placeholder={friend.email}
+            disabled={true}
+          />
+          <button
+            className="settings-input remove-link-button"
+            type="button"
+            placeholder="User Name"
+          >
+            Unblock
+          </button>
+        </div>
       </div>
-      <div className="settings-coloumns-container">
-        <div className="friends-profile-picture" />
-        <input
-          className="settings-input"
-          type="text"
-          placeholder="ac130veterans@gmail.com"
-          disabled={true}
-        />
-        <button
-          className="settings-input remove-link-button delete-button"
-          type="button"
-          placeholder="User Name"
-        >
-          Cancel Request
-        </button>
-        <button
-          className="settings-input remove-link-button delete-button"
-          type="button"
-          placeholder="User Name"
-        >
-          Block
-        </button>
-      </div>
-    </div>
-
-  <div className="settins-pane-title" style={{marginTop: '80px'}}>
-    BLOCKED USERS
-  </div>
-  <div className="settings-row">
-    <div className="settings-name">
-      Kanye West
-    </div>
-    <div className="settings-coloumns-container">
-      <div className="friends-profile-picture" />
-      <input
-        className="settings-input"
-        type="text"
-        placeholder="ac130veterans@gmail.com"
-        disabled={true}
-      />
-      <button
-        className="settings-input remove-link-button"
-        type="button"
-        placeholder="User Name"
-      >
-        Unblock
-      </button>
-    </div>
-  </div>
-
+    )}
     </div>
   );
 };
