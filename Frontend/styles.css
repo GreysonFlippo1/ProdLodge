@@ -246,6 +246,9 @@ settings pages (formally my profile)
 
 .settings-row {
     margin-top: 40px;
+    width: 60vw;
+    min-width: 800px;
+    max-width: 1200px;
 }
 
 .settings-name {
@@ -305,6 +308,13 @@ settings pages (formally my profile)
     border: 1px solid #fff;
     margin-right: 20px;
 }
+
+
+/* 
+
+homepage
+
+*/
 
 .songs-feed {
     overflow: auto;
