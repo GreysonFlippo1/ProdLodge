@@ -308,6 +308,7 @@ settings pages (formally my profile)
 
 .songs-feed {
     overflow: auto;
+    padding-right: 10px;
 }
 
 .song-card {
