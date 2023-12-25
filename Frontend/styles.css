@@ -313,6 +313,7 @@ settings pages (formally my profile)
 .song-card {
     width: 60vw;
     min-width: 800px;
+    max-width: 1200px;
     background-color: rgba(0,0,0,0.2);
     margin-left: 50px;
     margin-bottom: 50px;
