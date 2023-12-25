@@ -6,11 +6,16 @@ const mock_data = {
     {
       "owner": "Aman Koua",
       "ownerId": "64f2154e6bdca2f092de5e78",
+      'avatar': 'https://media.pitchfork.com/photos/650de105eacc5b460e151343/master/w_1280%2Cc_limit/Taylor-Swift-1989-Taylors-Version.jpg', //added
       "title": "Fathom",
       "description": "I might finish this one day",
       "id": "64f217026bdca2f092de5eb1",
       "visibility": "public",
       "userConnection": "friend",
+      "upvoteCount": 123, //added
+      "downvoteCount": 5, //added
+      "created": 1696277817833, //added
+      "edited": 1696277817833, //added
       "commentsList": [
           "651b23fd71015d39557790be"
       ],
@@ -64,8 +69,44 @@ const mock_data = {
 
 const SongCard = (song:object, isEditing:boolean) => {
 
+  const isPlaying = false
+
   return <div className="song-card">
-    test
+    <div className='song-info'> 
+      <div className='song-pp' style={{backgroundImage: `url('${song.avatar}')`}} />
+      <div className="song-title">{song.title}</div>
+      <div className='song-dash' />
+      <div className="song-artist">{song.owner}</div>
+      <div className="song-visibility">({song.visibility})</div>
+    </div>
+    <div className='song-info'>
+      <div className='song-desc'>{song.description}</div>
+    </div>
+    <div className='song-info'>
+      <div className='play-pause-bttn'>{isPlaying ? '\u23F8' : '\u23F5'}</div>
+      <div className="song-playback"></div>
+    </div>
+    <div className='song-info'>
+      <div className='song-modules-title'>Modules</div>
+    </div>
+    <div className='song-info'>
+      <div className='add-module-bttn'>+ Add Module</div>
+    </div>
+    <div className='song-info'>
+      <div className='ld-bttn'>L</div>
+      <div className='ld-bttn'>D</div>
+      <div className='ld-bttn'>C</div>
+    </div>
+
+    {/* Profile Pic | Title - Artist
+    <br />
+    Description
+    <br />
+    Play button | playback scrubber / visualzier
+    <br />
+    (expandable) Modules / add Module
+    <br />
+    (expandable) Like/Dislike & Comments */}
   </div>
 }
 

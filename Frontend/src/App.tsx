@@ -7,15 +7,15 @@ import {
 } from "react-router-dom";
 import { useContext, useEffect } from "react";
 
-import AudioBox from "./audioComponents/AudioBox";
+// import AudioBox from "./audioComponents/AudioBox";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
 import FriendProfilePage from "./pages/FriendProfilePage";
-import NewSong from "./pages/NewSong";
-import EditSong from "./pages/EditSong";
+// import NewSong from "./pages/NewSong";
+// import EditSong from "./pages/EditSong";
 import About from "./pages/About";
 import InvalidRoute from "./pages/InvalidRoute";
 
@@ -85,8 +85,8 @@ function App() {
               path="/userProfile/:id"
               element={<FriendProfilePage />}
             ></Route>
-            <Route path="/newSong" element={<NewSong />} />
-            <Route path="/editSong" element={<EditSong />} />
+            {/* <Route path="/newSong" element={<NewSong />} />
+            <Route path="/editSong" element={<EditSong />} /> */}
             <Route path="/about" element={<About />} />
             <Route path="/404" element={<InvalidRoute />} />
             <Route path="*" element={<Navigate to="/404" />} />{" "}
