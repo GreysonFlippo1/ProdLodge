@@ -119,12 +119,15 @@ const Home = () => {
         <div className={`home-navigation-options ${selectedPage === 'personal' ? 'home-navigation-selected' : ''}`} onClick={() => {setSelectedPage('personal')}}>
           Personal
         </div>
+        <div className="home-navigation-divider"/>
         <div className={`home-navigation-options ${selectedPage === 'friends' ? 'home-navigation-selected' : ''}`} onClick={() => {setSelectedPage('friends')}}>
           Shared
         </div>
+        <div className="home-navigation-divider"/>
         <div className={`home-navigation-options ${selectedPage === 'public' ? 'home-navigation-selected' : ''}`} onClick={() => {setSelectedPage('public')}}>
           Feed
         </div>
+        <div className="home-navigation-divider"/>
         <div className={`home-navigation-options ${selectedPage === 'search' ? 'home-navigation-selected' : ''}`} onClick={() => {setSelectedPage('search')}}>
           Search
         </div>
