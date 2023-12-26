@@ -114,31 +114,54 @@ const Home = () => {
   const [selectedPage, setSelectedPage] = useState("personal");
 
   return (
-    <div className="settings-container">
-      <div className="settings-navigation">
-        <div className="settings-navigation-label">
-          VIEW SONGS
+    <div className="songs-feed">
+      <div className="home-navigation">
+        <div className={`home-navigation-options ${selectedPage === 'personal' ? 'home-navigation-selected' : ''}`} onClick={() => {setSelectedPage('personal')}}>
+          Personal
         </div>
-        <div className={`settings-navigation-options ${selectedPage === 'personal' ? 'selected' : ''}`} onClick={() => {setSelectedPage('personal')}}>
-          My Songs
+        <div className={`home-navigation-options ${selectedPage === 'friends' ? 'home-navigation-selected' : ''}`} onClick={() => {setSelectedPage('friends')}}>
+          Shared
         </div>
-        <div className={`settings-navigation-options ${selectedPage === 'friends' ? 'selected' : ''}`} onClick={() => {setSelectedPage('friends')}}>
-          Friend's Songs
+        <div className={`home-navigation-options ${selectedPage === 'public' ? 'home-navigation-selected' : ''}`} onClick={() => {setSelectedPage('public')}}>
+          Feed
         </div>
-        <div className={`settings-navigation-options ${selectedPage === 'public' ? 'selected' : ''}`} onClick={() => {setSelectedPage('public')}}>
-          Public Songs
+        <div className={`home-navigation-options ${selectedPage === 'search' ? 'home-navigation-selected' : ''}`} onClick={() => {setSelectedPage('search')}}>
+          Search
         </div>
       </div>
-      <div className="songs-feed">
         {
           SongCard(mock_data.songs[0], false)
         }
         {
           SongCard(mock_data.songs[0], false)
         }
-      </div>
+        {
+          SongCard(mock_data.songs[0], false)
+        }
     </div>
   );
 };
 
 export default Home;
+
+
+/**
+ * 
+ * todos:
+  * search
+  * tags/hashtags
+  * comments
+  * modules
+  * update visualizer(s)
+  * optimization regarding the web-audio api usage
+  * scrolling feed with autoplay
+  * new home navigation
+  * make emails private (friend request via user profile & only send email to frontend if email was used to friend directly via the settings)
+  * add a unique user id/friend code eg: greysonflippo#420. Need to get away from relying on emails for public use.
+  * add an option to make email pulbic (opt-in) or viewable to a friend (friend specific visibility options)
+  * add list of friends in the friends feed to filter for a specific friend
+  * profile icon in the top right with a mini modal with some quick settings and notifications (friend requests or posts)
+  * add notification settings (also can be friend specific)
+  * backend rework - authentication, rerouting, api
+ * 
+ */
