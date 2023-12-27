@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import AudioModule from "../audioComponents/AudioModule";
 
 const mock_data = {
   songs:
@@ -89,7 +90,14 @@ const SongCard = (song:object, isEditing:boolean) => {
     <div className='song-info'>
       <div className='song-modules-title'>Modules</div>
     </div>
-    <div className='song-info'>
+    <div className='song-info' style={{paddingRight: '30px'}}>
+      <AudioModule type='gain' data={{amount: 1.5}} />
+      <AudioModule type='compression' data={{}}/>
+      <AudioModule type='waveshaper' data={{amount: 69}}/>
+      <AudioModule type='reverb' data={{}}/>
+      <AudioModule type='peak' data={{}}/>
+      <AudioModule type='highpass' data={{}}/>
+      <AudioModule type='lowpass' data={{}}/>
       <div className='add-module-bttn'>+ Add Module</div>
     </div>
     <div className='song-info'>

@@ -29,19 +29,19 @@ export interface TrackData {
 }
 
 export interface AudioModule {
-  type?: string;
-  isEnabled?: boolean;
-  frequency?: number;
-  resonance?: number;
-  gain?: number;
-  impulse?: number;
-  amount?: number;
-  threshold?: number;
-  knee?: number;
-  ratio?: number;
-  reduction?: number;
-  attack?: number;
-  release?: number;
+  // type?: string;
+  // isEnabled?: boolean;
+  // frequency?: number;
+  // resonance?: number;
+  // gain?: number;
+  // impulse?: number;
+  // amount?: number;
+  // threshold?: number;
+  // knee?: number;
+  // ratio?: number;
+  // reduction?: number;
+  // attack?: number;
+  // release?: number;
 }
 
 // NewSong types
