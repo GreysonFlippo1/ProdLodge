@@ -206,7 +206,7 @@ const AudioModule = ({
                     // need real keys
                     // need to replace default with actual values when present
                     const dataValue = data[dial.id] ?? dial.default
-                    const dialPosition = (dataValue - dial.values[0]) / dial.values[1] * 180
+                    const dialPosition = (dataValue - dial.values[0]) / (dial.values[1] - dial.values[0]) * 180
 
                     return (
                         <div className="dial-info-container" key={Math.random()}>
