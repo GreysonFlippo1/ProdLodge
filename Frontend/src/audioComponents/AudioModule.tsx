@@ -11,10 +11,10 @@ const moduleConfig = {
             {
                 id: 'amount',
                 label: 'Amount',
-                values: [0, 2.5],
+                values: [-40, 40],
                 step: 0.01,
-                default: 1,
-                unit: false,
+                default: 0,
+                unit: 'dB',
             }
         ]
     },
@@ -29,7 +29,7 @@ const moduleConfig = {
                 values: [1, 100],
                 step: 1,
                 default: 1,
-                unit: false,
+                unit: 'x',
             }
         ]
     },
@@ -118,10 +118,10 @@ const moduleConfig = {
             {
                 id: 'gain',
                 label: 'Gain',
-                values: [-30, 30],
+                values: [-40, 40],
                 step: 1,
                 default: 15,
-                unit: false,
+                unit: 'dB',
             }
         ]
     },
@@ -142,7 +142,7 @@ const moduleConfig = {
                 values: [-100, 0],
                 step: 1,
                 default: 0,
-                unit: false,
+                unit: 'dB',
             },
             {
                 id: 'knee',
@@ -150,7 +150,7 @@ const moduleConfig = {
                 values: [0, 40],
                 step: 1,
                 default: 0,
-                unit: false,
+                unit: 'dB',
             },
             {
                 id: 'ratio',
@@ -166,7 +166,7 @@ const moduleConfig = {
                 values: [10, 1000],
                 step: 1,
                 default: 10,
-                unit: false,
+                unit: 'dB',
             },
             {
                 id: 'release',
@@ -174,7 +174,7 @@ const moduleConfig = {
                 values: [10, 1000],
                 step: 1,
                 default: 10,
-                unit: false,
+                unit: 'dB',
             }
         ]
     }
@@ -206,7 +206,7 @@ const AudioModule = ({
                     // need real keys
                     // need to replace default with actual values when present
                     const dataValue = data[dial.id] ?? dial.default
-                    const dialPosition = (dataValue - dial.values[0]) / (dial.values[1] - dial.values[0]) * 180
+                    const dialPosition = (dataValue - dial.values[0]) / (dial.values[1] - dial.values[0]) * 270 - 45
 
                     return (
                         <div className="dial-info-container" key={Math.random()}>
@@ -218,7 +218,7 @@ const AudioModule = ({
                                 </div>
                                 <div className="dial-max dial-values">{dial.values[1]}</div>
                             </div>
-                            <div className="dial-value">{dataValue}</div>
+                            <div className="dial-value">{dataValue}{dial.unit ?? ''}</div>
                         </div>
                     )
                 })}
