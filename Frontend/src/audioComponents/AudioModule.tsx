@@ -40,6 +40,37 @@ const moduleConfig = {
         colors: ['rgba(50,100,150,0.3)', 'rgba(50,100,150,0.1)'],
         dials: [
             {
+                id: 'wetness',
+                label: 'Dry / Wet',
+                values: [0, 100],
+                step: 0,
+                default: 1,
+                unit: false,
+            },
+            {
+                id: 'size',
+                label: 'Size',
+                values: [5, 1500],
+                step: 0,
+                default: 25,
+                unit: 'ms',
+            },
+            {
+                id: 'quality',
+                label: 'Quality',
+                values: [2, 25],
+                step: 0,
+                default: 10,
+                unit: false,
+            }
+        ]
+    },
+    convolver: {
+        id: 'convolver',
+        label: 'Convolver',
+        colors: ['rgba(250,100,150,0.3)', 'rgba(250,100,150,0.1)'],
+        dials: [
+            {
                 id: 'size',
                 label: 'Size',
                 values: [0, 17],
