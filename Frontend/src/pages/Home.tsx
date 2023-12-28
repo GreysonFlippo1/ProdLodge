@@ -71,6 +71,8 @@ const mock_data = {
 const SongCard = (song:object, isEditing:boolean) => {
 
   const isPlaying = false
+  const showModules = true
+  const showComments = true
 
   return <div className="song-card">
     <div className='song-info'> 
@@ -89,34 +91,26 @@ const SongCard = (song:object, isEditing:boolean) => {
     </div>
     <div className='song-info'>
       <div className='song-modules-title'>Modules (8)</div>
-      <div className="module-visibility">(Hide)</div>
+      <div className="module-visibility">{showModules ? '(Hide)' : '(Show)'}</div>
     </div>
-    <div className='song-info prevent-select' style={{paddingRight: '30px'}}>
-      <AudioModule type='gain' data={{amount: 1.5}} />
-      <AudioModule type='compression' data={{}}/>
-      <AudioModule type='waveshaper' data={{amount: 69}}/>
-      <AudioModule type='reverb' data={{}}/>
-      <AudioModule type='peak' data={{}}/>
-      <AudioModule type='highpass' data={{}}/>
-      <AudioModule type='lowpass' data={{}}/>
-      <AudioModule type='convolver' data={{}}/>
-      <div className='add-module-bttn'>+ Add Module</div>
-    </div>
+    {showModules && 
+      <div className='song-info prevent-select' style={{paddingRight: '30px'}}>
+        <AudioModule type='gain' data={{amount: 1.5}} />
+        <AudioModule type='compression' data={{}}/>
+        <AudioModule type='waveshaper' data={{amount: 69}}/>
+        <AudioModule type='reverb' data={{}}/>
+        <AudioModule type='peak' data={{}}/>
+        <AudioModule type='highpass' data={{}}/>
+        <AudioModule type='lowpass' data={{}}/>
+        <AudioModule type='convolver' data={{}}/>
+        <div className='add-module-bttn'>+ Add Module</div>
+      </div>
+    }
     <div className='song-info'>
       <div className='ld-bttn'>L</div>
       <div className='ld-bttn'>D</div>
       <div className='ld-bttn'>C</div>
     </div>
-
-    {/* Profile Pic | Title - Artist
-    <br />
-    Description
-    <br />
-    Play button | playback scrubber / visualzier
-    <br />
-    (expandable) Modules / add Module
-    <br />
-    (expandable) Like/Dislike & Comments */}
   </div>
 }
 
