@@ -90,7 +90,7 @@ const SongCard = (song:object, isEditing:boolean) => {
     <div className='song-info'>
       <div className='song-modules-title'>Modules</div>
     </div>
-    <div className='song-info' style={{paddingRight: '30px'}}>
+    <div className='song-info prevent-select' style={{paddingRight: '30px'}}>
       <AudioModule type='gain' data={{amount: 1.5}} />
       <AudioModule type='compression' data={{}}/>
       <AudioModule type='waveshaper' data={{amount: 69}}/>

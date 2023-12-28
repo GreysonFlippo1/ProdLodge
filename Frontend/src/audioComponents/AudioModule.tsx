@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect, useContext } from "react";
 import deleteButton from "../assets/delete.png";
 
 import "../invisibleScrollbar.css";
@@ -12,7 +13,7 @@ const moduleConfig = {
                 id: 'amount',
                 label: 'Amount',
                 values: [-40, 40],
-                step: 0.01,
+                step: 2,
                 default: 0,
                 unit: 'dB',
             }
@@ -27,7 +28,7 @@ const moduleConfig = {
                 id: 'amount',
                 label: 'Amount',
                 values: [1, 100],
-                step: 1,
+                step: 0,
                 default: 1,
                 unit: 'x',
             }
@@ -42,7 +43,7 @@ const moduleConfig = {
                 id: 'size',
                 label: 'Size',
                 values: [0, 17],
-                step: 1,
+                step: 0,
                 default: 1,
                 unit: false,
             }
@@ -57,7 +58,7 @@ const moduleConfig = {
                 id: 'frequency',
                 label: 'Frequency',
                 values: [20, 21000],
-                step: 1,
+                step: 0,
                 default: 20,
                 unit: 'hz',
             },
@@ -65,7 +66,7 @@ const moduleConfig = {
                 id: 'resonance',
                 label: 'Resonance',
                 values: [-25, 25],
-                step: 1,
+                step: 0,
                 default: 0,
                 unit: false,
             },
@@ -80,7 +81,7 @@ const moduleConfig = {
                 id: 'frequency',
                 label: 'Frequency',
                 values: [20, 21000],
-                step: 1,
+                step: 0,
                 default: 21000,
                 unit: 'hz',
             },
@@ -88,7 +89,7 @@ const moduleConfig = {
                 id: 'resonance',
                 label: 'Resonance',
                 values: [-25, 25],
-                step: 1,
+                step: 0,
                 default: 0,
                 unit: false,
             },
@@ -103,7 +104,7 @@ const moduleConfig = {
                 id: 'frequency',
                 label: 'Frequency',
                 values: [20, 21000],
-                step: 1,
+                step: 0,
                 default: 10000,
                 unit: 'hz',
             },
@@ -111,7 +112,7 @@ const moduleConfig = {
                 id: 'width',
                 label: 'Width',
                 values: [1, 25],
-                step: 1,
+                step: 0,
                 default: 1,
                 unit: false,
             },
@@ -119,7 +120,7 @@ const moduleConfig = {
                 id: 'gain',
                 label: 'Gain',
                 values: [-40, 40],
-                step: 1,
+                step: 0,
                 default: 15,
                 unit: 'dB',
             }
@@ -140,7 +141,7 @@ const moduleConfig = {
                 id: 'threshold',
                 label: 'Threshold',
                 values: [-100, 0],
-                step: 1,
+                step: 0,
                 default: 0,
                 unit: 'dB',
             },
@@ -148,7 +149,7 @@ const moduleConfig = {
                 id: 'knee',
                 label: 'Knee',
                 values: [0, 40],
-                step: 1,
+                step: 0,
                 default: 0,
                 unit: 'dB',
             },
@@ -156,7 +157,7 @@ const moduleConfig = {
                 id: 'ratio',
                 label: 'Ratio',
                 values: [1, 20],
-                step: 1,
+                step: 0,
                 default: 1,
                 unit: false,
             },
@@ -164,7 +165,7 @@ const moduleConfig = {
                 id: 'attack',
                 label: 'Attack',
                 values: [10, 1000],
-                step: 1,
+                step: 0,
                 default: 10,
                 unit: 'dB',
             },
@@ -172,13 +173,52 @@ const moduleConfig = {
                 id: 'release',
                 label: 'Release',
                 values: [10, 1000],
-                step: 1,
+                step: 0,
                 default: 10,
                 unit: 'dB',
             }
         ]
     }
 }
+
+let knob_angle = null
+let dialObject = null
+let updateKnob = null
+let startingPos = null
+
+const turnDial = (e, dial, updateEffect) => {
+
+    if (!startingPos) {
+        startingPos = [e.clientX, e.clientY]
+    }
+
+    const cursor = [e.clientX, e.clientY]
+    const deg = cursor[0] - startingPos[0]
+
+    knob_angle = deg
+
+    if (updateEffect && !updateKnob) {
+        updateKnob = updateEffect
+        dialObject = dial
+    }
+}
+
+const turnDialUpdate = (e) => {
+    if (dialObject && updateKnob) {
+        turnDial(e, null, null)
+        updateKnob(dialObject, knob_angle)
+    }
+}
+
+const turnDialStop = () => {
+    knob_angle = null
+    dialObject = null
+    updateKnob = null
+    startingPos = null
+}
+
+document.addEventListener('mousemove', turnDialUpdate);
+document.addEventListener('mouseup', turnDialStop);
 
 interface Props {
     type: string,
@@ -190,6 +230,7 @@ const AudioModule = ({
 }: Props) => {
 
     const config = moduleConfig[type]
+    const [moduleState, setModuleState] = useState({...data})
 
     //some modules have a lot of dials, so styles can be configured for indiviual modules as needed. Could automate later via # of dials
     const styles = {
@@ -198,14 +239,19 @@ const AudioModule = ({
     }
     const containerStyles = config.containerStyles ?? {}
 
+    const updateDial = (dial, val) => {
+        const range = dial.values[1] - dial.values[0] // (val / 100) * range
+        const ang = Number(moduleState[dial.id] ?? dial.default) + ((val / 100) * range)
+        const dataValue = Math.min(Math.max(ang, dial.values[0]), dial.values[1]).toFixed(dial.step)
+        setModuleState({...moduleState, [dial.id]: dataValue})
+    }
+
     return (
         <div className="audio-module-container" style={styles}>
             <div className="audio-module-name">{config.label}</div>
             <div className="dials-container" style={containerStyles}>
                 {config.dials.map(dial => {
-                    // need real keys
-                    // need to replace default with actual values when present
-                    const dataValue = data[dial.id] ?? dial.default
+                    const dataValue = moduleState[dial.id] ?? dial.default
                     const dialPosition = (dataValue - dial.values[0]) / (dial.values[1] - dial.values[0]) * 270 - 45
 
                     return (
@@ -213,7 +259,11 @@ const AudioModule = ({
                             <div className="dial-name">{dial.label}</div>
                             <div className="dial-container">
                                 <div className="dial-min dial-values">{dial.values[0]}</div>
-                                <div className="dial" style={{transform: `rotate(${dialPosition}deg)`}}>
+                                <div className="dial"
+                                    id={dial.id}
+                                    style={{transform: `rotate(${dialPosition}deg)`}}
+                                    onMouseDown={(e) => { turnDial(e, dial, updateDial) }}
+                                >
                                     <div className="dial-indicator" />
                                 </div>
                                 <div className="dial-max dial-values">{dial.values[1]}</div>
