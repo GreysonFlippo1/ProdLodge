@@ -212,7 +212,7 @@ const moduleConfig = {
     }
 }
 
-let knob_angle = null
+let difference = null
 let dialObject = null
 let updateKnob = null
 let startingPos = null
@@ -224,9 +224,9 @@ const turnDial = (e, dial, updateEffect) => {
     }
 
     const cursor = [e.clientX, e.clientY]
-    const deg = cursor[0] - startingPos[0]
+    const dif = cursor[0] - startingPos[0]
 
-    knob_angle = deg
+    difference = dif
 
     if (updateEffect && !updateKnob) {
         updateKnob = updateEffect
@@ -237,12 +237,12 @@ const turnDial = (e, dial, updateEffect) => {
 const turnDialUpdate = (e) => {
     if (dialObject && updateKnob) {
         turnDial(e, null, null)
-        updateKnob(dialObject, knob_angle)
+        updateKnob(dialObject, difference)
     }
 }
 
 const turnDialStop = () => {
-    knob_angle = null
+    difference = null
     dialObject = null
     updateKnob = null
     startingPos = null
