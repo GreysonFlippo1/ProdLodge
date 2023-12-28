@@ -242,7 +242,7 @@ const AudioModule = ({
     const updateDial = (dial, val) => {
         const range = dial.values[1] - dial.values[0] // (val / 100) * range
         const ang = Number(moduleState[dial.id] ?? dial.default) + ((val / 100) * range)
-        const dataValue = Math.min(Math.max(ang, dial.values[0]), dial.values[1]).toFixed(dial.step)
+        const dataValue = Math.min(Math.max(ang, dial.values[0]), dial.values[1]).toFixed(dial.step) ?? dial.default
         setModuleState({...moduleState, [dial.id]: dataValue})
     }
 
